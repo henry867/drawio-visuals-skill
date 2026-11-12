@@ -1,0 +1,24 @@
+drawio-foundry
+Copyright 2026 drawio-native-craft contributors
+
+This product includes documentation and command patterns adapted from the
+JGraph drawio-mcp project:
+https://github.com/jgraph/drawio-mcp
+Pinned reference commit: 14b318b19cc37b159f841227b9d11fbd18ce18ea
+Licensed under the Apache License, Version 2.0.
+
+The lightweight compressed-page compatibility boundary was informed by the
+DayuanJiang next-ai-draw-io project:
+https://github.com/DayuanJiang/next-ai-draw-io
+Pinned reference commit: be8f26d6b17c4a1baafb78be19bb689398b8b721
+Licensed under the Apache License, Version 2.0.
+
+Draw.io and diagrams.net are trademarks of their respective owners. This Skill
+is an independent lightweight implementation and is not an official JGraph
+distribution.
+
+Public distribution maintained by HenryXu (https://github.com/henry867).
+This distribution includes additions and modifications for diagram-type
+selection, visual storytelling, reusable native components, grouped-object
+tooltips, public examples, documentation, and offline validation tests.
+The original upstream attribution above is retained.
