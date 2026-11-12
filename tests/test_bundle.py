@@ -84,7 +84,10 @@ class BundleTests(unittest.TestCase):
     def test_default_readme_and_examples_are_english(self):
         for path in [ROOT / "README.md", EXAMPLE, ROOT / "examples/components-en.drawio"]:
             with self.subTest(path=path.name):
-                self.assertIsNone(re.search(r"[\u3400-\u9fff]", path.read_text()))
+                content = path.read_text()
+                if path.name == "README.md":
+                    content = content.replace("[中文](README.zh-CN.md)", "")
+                self.assertIsNone(re.search(r"[\u3400-\u9fff]", content))
 
     def test_default_example_has_no_endpoint_label_risks(self):
         layout = self.run_cli("check-layout", EXAMPLE, "--verbose")

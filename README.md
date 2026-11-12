@@ -1,6 +1,6 @@
 # Drawio Foundry
 
-[Chinese README](README.zh-CN.md) · [Skill instructions](SKILL.md) · [Apache-2.0](LICENSE)
+[中文](README.zh-CN.md) · [Skill instructions](SKILL.md) · [Apache-2.0](LICENSE)
 
 An Agent Skill for creating editable Draw.io diagrams that explain objects, interactions, and transformations. It combines diagram-selection guidance, reusable native components, file operations, and checks against the official Draw.io renderer.
 
