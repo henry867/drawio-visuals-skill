@@ -1,4 +1,4 @@
-# Drawio Foundry
+# Drawio Visuals Skill
 
 [English](README.md) · [Skill 主入口](SKILL.md) · [Apache-2.0](LICENSE)
 
@@ -17,16 +17,16 @@
 
 ## 安装
 
-将仓库克隆到你的 Agent 的 skills 目录下，文件夹名保留为 `drawio-foundry`，并保留内部目录结构：
+将仓库克隆到你的 Agent 的 skills 目录下，文件夹名保留为 `drawio-visuals-skill`，并保留内部目录结构：
 
 ```bash
-git clone https://github.com/henry867/drawio-foundry.git /path/to/your/skills/drawio-foundry
+git clone https://github.com/henry867/drawio-visuals-skill.git /path/to/your/skills/drawio-visuals-skill
 ```
 
 通过 Agent 自身的 Skill 发现机制加载，或让它读取 `SKILL.md`。如果宿主支持 `$` 形式的 Skill 调用：
 
 ```text
-使用 $drawio-foundry 梳理这条文档入库链路。
+使用 $drawio-visuals-skill 梳理这条文档入库链路。
 根据内容选择合适的图式，展示数据如何变化，
 交付经过渲染检查的图片和可离线查看的 HTML。
 ```

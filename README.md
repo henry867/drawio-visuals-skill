@@ -1,4 +1,4 @@
-# Drawio Foundry
+# Drawio Visuals Skill
 
 [中文](README.zh-CN.md) · [Skill instructions](SKILL.md) · [Apache-2.0](LICENSE)
 
@@ -17,16 +17,16 @@ An Agent Skill for creating editable Draw.io diagrams that explain objects, inte
 
 ## Install as a skill
 
-Clone this repository into a `drawio-foundry` folder inside your agent's skills directory. Preserve the directory structure so references, scripts, and component assets remain available.
+Clone this repository into a `drawio-visuals-skill` folder inside your agent's skills directory. Preserve the directory structure so references, scripts, and component assets remain available.
 
 ```bash
-git clone https://github.com/henry867/drawio-foundry.git /path/to/your/skills/drawio-foundry
+git clone https://github.com/henry867/drawio-visuals-skill.git /path/to/your/skills/drawio-visuals-skill
 ```
 
 Use your agent's normal skill-discovery mechanism, or direct it to read `SKILL.md`. If the host supports dollar-prefixed skill invocation:
 
 ```text
-Use $drawio-foundry to explain this document-ingestion pipeline.
+Use $drawio-visuals-skill to explain this document-ingestion pipeline.
 Choose a suitable diagram type, show the data transformations,
 and deliver a verified image and offline-capable HTML preview.
 ```

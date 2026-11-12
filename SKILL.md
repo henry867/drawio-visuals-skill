@@ -1,9 +1,9 @@
 ---
-name: drawio-foundry
+name: drawio-visuals-skill
 description: Create and edit native Draw.io diagrams, explain processes through concrete editable objects and visible transformations, reconstruct diagrams from source material, and inspect, patch, version, or export .drawio files. Use for diagram images and HTML previews with official-renderer QA and layout/topology checks; native .drawio files are intermediate artifacts by default.
 ---
 
-# Drawio Foundry
+# Drawio Visuals Skill
 
 Create, reconstruct, and edit native, user-editable Draw.io files without a server, MCP, fixed template, Scene IR, or custom renderer.
 

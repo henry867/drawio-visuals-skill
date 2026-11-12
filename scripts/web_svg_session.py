@@ -17,7 +17,7 @@ import urllib.parse
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 CORE_PATH = SCRIPT_DIR / "drawio_file.py"
-CORE_SPEC = importlib.util.spec_from_file_location("drawio_foundry_core", CORE_PATH)
+CORE_SPEC = importlib.util.spec_from_file_location("drawio_visuals_skill_core", CORE_PATH)
 core = importlib.util.module_from_spec(CORE_SPEC)
 CORE_SPEC.loader.exec_module(core)
 
