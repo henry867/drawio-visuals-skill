@@ -13,7 +13,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 CLI = ROOT / "scripts" / "drawio_file.py"
-EXAMPLE = ROOT / "examples" / "procurement-approval.drawio"
+EXAMPLE = ROOT / "examples" / "ecommerce-order.drawio"
 
 
 class BundleTests(unittest.TestCase):
@@ -56,15 +56,40 @@ class BundleTests(unittest.TestCase):
                 self.assertEqual(layout["result"]["collisionCount"], 0)
 
     def test_example_branch_outcomes_remain_reachable(self):
-        result = self.run_cli(
-            "check-topology", EXAMPLE,
-            "--start", "submit",
-            "--terminal", "notify", "--terminal", "returned",
-            "--expect-edge", "gate", "parcel",
-            "--expect-edge", "gate", "returned",
-            "--require-connected",
-        )
-        self.assertEqual(result["result"]["status"], "clear")
+        views = {
+            "checkout-flow": (
+                "checkout",
+                ["delivered", "notify_customer", "rejected", "cancelled", "refunded", "order_db"],
+                [("event_queue", "fulfillment"), ("event_queue", "notify_customer"),
+                 ("retry_gate", "fulfillment"), ("retry_gate", "dead_letter"),
+                 ("manual_review", "refunded")],
+            ),
+            "order-lifecycle": (
+                "initial",
+                ["delivered_final", "rejected_final", "cancelled_final", "refunded_final"],
+                [("fulfilling", "retry_scheduled"), ("retry_scheduled", "fulfilling"),
+                 ("manual_review", "refund_pending")],
+            ),
+        }
+        for page_id, (start, terminals, edges) in views.items():
+            with self.subTest(page=page_id):
+                args = ["check-topology", EXAMPLE, "--page-id", page_id, "--start", start]
+                for terminal in terminals:
+                    args.extend(["--terminal", terminal])
+                for source, target in edges:
+                    args.extend(["--expect-edge", source, target])
+                result = self.run_cli(*args, "--require-connected")
+                self.assertEqual(result["result"]["status"], "clear")
+
+    def test_default_readme_and_examples_are_english(self):
+        for path in [ROOT / "README.md", EXAMPLE, ROOT / "examples/components-en.drawio"]:
+            with self.subTest(path=path.name):
+                self.assertIsNone(re.search(r"[\u3400-\u9fff]", path.read_text()))
+
+    def test_default_example_has_no_endpoint_label_risks(self):
+        layout = self.run_cli("check-layout", EXAMPLE, "--verbose")
+        risks = [item for item in layout["warnings"] if item["code"] == "EDGE_LABEL_ENDPOINT_OVERLAP_RISK"]
+        self.assertEqual(risks, [])
 
     def test_patch_rejects_stale_revision_and_preserves_existing_output(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -107,12 +132,16 @@ class BundleTests(unittest.TestCase):
             source = base / "source.drawio"
             source.write_bytes(EXAMPLE.read_bytes())
             before = source.read_bytes()
-            png = ROOT / "docs/images/procurement-approval.png"
+            pngs = [ROOT / "docs/images/commerce-checkout.png", ROOT / "docs/images/commerce-lifecycle.png"]
             output = base / "preview.html"
-            response = self.run_cli("preview", source, "--output", output, "--fallback-png", png)
+            args = ["preview", source, "--output", output]
+            for png in pngs:
+                args.extend(["--fallback-png", png])
+            response = self.run_cli(*args)
             self.assertFalse(response["result"]["networkRequired"])
-            self.assertEqual(response["result"]["offlinePages"], 1)
-            self.assertIn(base64.b64encode(png.read_bytes()).decode(), output.read_text())
+            self.assertEqual(response["result"]["offlinePages"], 2)
+            for png in pngs:
+                self.assertIn(base64.b64encode(png.read_bytes()).decode(), output.read_text())
             self.assertEqual(source.read_bytes(), before)
 
     def test_unsafe_xml_and_page_limit_are_rejected(self):

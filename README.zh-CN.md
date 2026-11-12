@@ -4,13 +4,13 @@
 
 一个用于绘制可编辑 Draw.io 图的 Agent Skill。它提供选图方法、具象化表达指导、可复用原生构件，以及文件操作、布局检查、连通性检查和官方渲染工作流。
 
-![可编辑原生构件](docs/images/components.png)
+![电商下单与履约流程](docs/images/commerce-checkout.png)
 
 ## 核心能力
 
 - **按内容选图**：优先遵循用户指定的类型、符号和方向；未指定时，根据要解释的问题选择 UML 或非 UML 图式，不默认画流程图或泳道图。
 - **让图形承担表达**：呈现对象、动作、结构和前后变化，区分消息、队列、处理器与存储；同时保留类图、时序图、状态图、ER 图等规范符号的语义。
-- **12 个原生构件**：页面、文件、消息、队列、处理器、存储、文档块、结构化记录、向量、人工审阅、条件判断和通知。可以改造和组合，也可以按同一方法绘制目录之外的对象。
+- **12 个起始构件，能力不限于此**：页面、文件、消息、队列、处理器、存储、文档块、结构化记录、向量、人工审阅、条件判断和通知。这是可复用的起点，不是全部图形类型；Agent 可以组合、改造或按同一方法绘制目录之外的新对象。
 - **原生文件操作**：检查、查询、补丁修改、页面管理和不可覆盖的新版本输出。
 - **验证与交付**：检查布局和显式流程连通性，通过 Draw.io Desktop 或官方 Web 渲染，默认交付 PNG 和 HTML。
 - **离线预览**：HTML 可嵌入每页已验证的 PNG；在线预览支持组合对象的悬停说明和编辑副本。
@@ -46,33 +46,44 @@ Desktop 导出需要安装 Draw.io Desktop，目前提供 macOS、Linux 检测�
 在仓库根目录运行：
 
 ```bash
-python3 scripts/drawio_file.py inspect examples/procurement-approval.drawio
-python3 scripts/drawio_file.py check-layout examples/procurement-approval.drawio
-python3 scripts/drawio_file.py check-topology examples/procurement-approval.drawio \
-  --start submit --terminal notify --terminal returned \
-  --expect-edge gate parcel --expect-edge gate returned --require-connected
+python3 scripts/drawio_file.py inspect examples/ecommerce-order.drawio
+python3 scripts/drawio_file.py check-layout examples/ecommerce-order.drawio
+python3 scripts/drawio_file.py check-topology examples/ecommerce-order.drawio \
+  --page-id checkout-flow --start checkout \
+  --terminal delivered --terminal notify_customer --terminal rejected \
+  --terminal cancelled --terminal refunded --terminal order_db \
+  --expect-edge event_queue fulfillment \
+  --expect-edge event_queue notify_customer --require-connected
 ```
 
 安装 Desktop 后，可导出新图片和 HTML：
 
 ```bash
 mkdir outputs
-python3 scripts/drawio_file.py render examples/procurement-approval.drawio \
-  --page-index 0 --output outputs/procurement-v001.png
-python3 scripts/drawio_file.py preview examples/procurement-approval.drawio \
-  --output outputs/procurement-v001.html \
-  --fallback-png outputs/procurement-v001.png
+python3 scripts/drawio_file.py render examples/ecommerce-order.drawio \
+  --page-index 0 --output outputs/commerce-v001-page-01.png
+python3 scripts/drawio_file.py render examples/ecommerce-order.drawio \
+  --page-index 1 --output outputs/commerce-v001-page-02.png
+python3 scripts/drawio_file.py preview examples/ecommerce-order.drawio \
+  --output outputs/commerce-v001.html \
+  --fallback-png outputs/commerce-v001-page-01.png \
+  --fallback-png outputs/commerce-v001-page-02.png
 ```
 
 后续写入选择新的输出文件名，输入文件不会被覆盖。未提供 fallback PNG 的 HTML 依赖联网加载官方 Viewer。
 
 ## 示例
 
-下面是虚构的采购审批示例：复用文件、人工审阅、条件和通知构件，再组合原生图形绘制包裹，展示通过和退回两条路径。
+新的电商示例包含两张互补视图，默认图中文字均为英文：
 
-![采购审批示例](docs/images/procurement-approval.png)
+1. **具象化订单流程**（上图）：库存预占、支付、订单与 Outbox 原子提交、消息队列、履约与通知扇出，以及库存不足、支付失败、重试、死信队列、人工处理和退款补偿。
+2. **订单状态机**（下图）：描述同一订单从确认到履约、发货、送达、取消、重试和退款的状态变化，在状态边界内用库存托盘、支付卡、订单与消息、装箱、载货货车、签收和退款画面表达变化，同时保留状态和转移的语义。
 
-原生文件：[构件图谱](examples/components.drawio)、[采购审批](examples/procurement-approval.drawio)。
+![订单状态机](docs/images/commerce-lifecycle.png)
+
+示例是虚构策略，不是生产模板。订单确认、发货、送达分别表示不同阶段，独立通知也不等于订单已完成。支付卡、库存托盘、包裹和货车展示了目录之外图形的组合方法。
+
+原生文件：[电商流程与状态机](examples/ecommerce-order.drawio)、[英文构件图谱](examples/components-en.drawio)。
 
 ## 指导与验证
 
@@ -86,7 +97,9 @@ python3 scripts/drawio_file.py preview examples/procurement-approval.drawio \
 python3 -m unittest discover -s tests -v
 ```
 
-自动校验覆盖构件、引用、显式流程路径、版本保护、禁止覆盖、XML 拒绝和离线预览打包。它不能替代人工或 Agent 对官方渲染结果的视觉检查。`check-layout` 返回 `indeterminate` 时仍需检查渲染；没有碰撞不等于图已经易读。
+自动校验覆盖构件、引用、显式流程路径、版本保护、禁止覆盖、XML 拒绝和离线预览打包。新增的 `EDGE_LABEL_ENDPOINT_OVERLAP_RISK` 会提示连接线标签侵入两端图形安全间距的风险。Skill 要求为完整标签预留空间，通过增加间距、合理换行或调整位置解决，并检查实际渲染边界；仍有标签重叠时不能标记为 `ready`。
+
+这些检查不能替代官方渲染结果的视觉检查。`check-layout` 返回 `indeterminate` 时仍需检查渲染；没有连线碰撞也不等于文字已经易读。
 
 在线交互依赖 `viewer.diagrams.net`；Web 编辑和 SVG 导出使用 `embed.diagrams.net`，会将图内容发送到对应官方服务。需要离线工作时使用 Desktop 和 PNG fallback。
 

@@ -47,7 +47,7 @@ Use a primary diagram plus a focused secondary view only when one view cannot an
 
 ## Keep notation and visual storytelling compatible
 
-Use [visual-storytelling.md](visual-storytelling.md) for meaningful object silhouettes, contents, actions and before/after changes when they help the chosen form. That does not require icons everywhere:
+Use [visual-storytelling.md](visual-storytelling.md) for meaningful object silhouettes, contents, actions and before/after changes when they help the chosen form. The chosen form and the requested visual expression are separate decisions: selecting a state machine does not cancel a pictorial requirement. Carry it into every companion view with meaningful state contents or payload illustrations while preserving notation. This does not require icons everywhere:
 
 - A UML class box's name, attributes and operations carry structural information; a server icon does not replace its associations or multiplicities.
 - A sequence message's sender/receiver and order matter more than an envelope illustration. Optional payload graphics should not hide lifelines, guards, replies or time ordering.

@@ -2524,6 +2524,43 @@ def layout_page(page, expect_single_page=False):
     for label_record in label_records:
         label_rectangle = label_record["bounds"]
         edge_id = label_record["edgeId"]
+        # Endpoint bodies were excluded from the generic nearby-vertex pass.
+        # Check them explicitly: a long label can cross either of the very
+        # shapes its edge connects, even when the connector itself is clear.
+        for role, vertex_id in (
+            ("source", label_record["sourceId"]),
+            ("target", label_record["targetId"]),
+        ):
+            if vertex_id not in rectangles:
+                continue
+            terminal = cell_map[vertex_id]
+            if (
+                native_style(terminal.cell).get("group") == "1"
+                or visual_container_kind(terminal) is not None
+            ):
+                # A group boundary is not a painted body. Its visible children
+                # remain covered by the nearby-vertex pass below.
+                continue
+            rectangle = rectangles[vertex_id]
+            if intersection(label_rectangle, expanded_rectangle(rectangle, 8.0)) is None:
+                continue
+            warn(
+                "EDGE_LABEL_ENDPOINT_OVERLAP_RISK",
+                edge_id,
+                "estimated-label-in-endpoint-clearance",
+                dedupe_key=(role, vertex_id),
+                endpoint=role,
+                vertexId=vertex_id,
+                minimumClearance=8.0,
+                labelBounds=compact_rectangle(label_rectangle),
+                endpointBounds=compact_rectangle(rectangle),
+            )
+            add_risk(
+                "EDGE_LABEL_ENDPOINT_OVERLAP_RISK",
+                union_rectangles((label_rectangle, rectangle)),
+                [edge_id, vertex_id],
+                3,
+            )
         excluded = {
             label_record["sourceId"],
             label_record["targetId"],

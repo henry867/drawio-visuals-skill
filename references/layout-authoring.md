@@ -94,6 +94,20 @@ Resolve a connection conflict in this order: change the attachment port, add a w
 
 Ports and waypoints reduce routing risk but do not prove the Draw.io renderer's final path. Preserve intentional overlaps and user-specified composition.
 
+## Connector-label clearance
+
+Node spacing must include the connector's text, not just the arrow. A white label background hides the stroke behind text; it does not prevent text from entering a connected shape.
+
+- Before placing a labeled connection, estimate the longest rendered line at the actual font and size. Reserve that width plus at least 8px at each end of the clear corridor. For a vertical gap, budget the label's full multiline height instead. These are safety margins, not a universal node-spacing grid.
+- Check the **source and target bodies**, other nodes, nearby labels and container headers. Do not exempt the connected shapes from text-overlap review. Invisible group bounds are not painted bodies; inspect their visible parts and captions.
+- If text does not fit, increase the gap or reroute into a clear labeled corridor; use explicit line breaks where they preserve meaning, or move the label with native geometry/offset. Keep long event/guard/action details in a nearby note when appropriate. Recompute clearance after each change.
+- Preserve useful font sizes and complete semantics. Do not fix a collision by shrinking labels, clipping them, covering a node with a white background, or abbreviating away a meaningful guard.
+- In the official render, inspect these connections at readable/native zoom. For dense rows, measure each edge label's actual text bounding rectangle (including its background/padding) against the visible connected shapes and nearby text. Browser-based QA may read the official Viewer's DOM/graph text bounds; this is measurement of the official renderer, not a second renderer. Review horizontal and vertical clearances, rather than accepting a fit-to-page overview.
+
+`check-layout` reports `EDGE_LABEL_ENDPOINT_OVERLAP_RISK` when conservative label estimates enter an ordinary source/target body's 8px clearance. It checks explicit offsets and manual line breaks, while visible children of composite endpoints remain covered by nearby-vertex checks. This is a risk estimate, not a claim of measured font bounds; complex routes and fonts still need rendered QA.
+
+An unresolved endpoint/label overlap blocks `ready`. Either correct it and re-render, or establish with actual rendered measurements that the label clears the visible bodies. If the correction budget is exhausted and overlap remains, report `draft_with_issues`. A topology pass or zero connector/node intersections does not waive text clearance.
+
 ## Animate directed semantic flows by default
 
 For newly authored or substantially redesigned content, use Draw.io's native connector style on directed semantic-flow edges after their routes are stable:
@@ -126,7 +140,7 @@ For unrotated native rhombus and ellipse shapes, the checker resolves Draw.io's 
 
 Container bodies are not ordinary business nodes. A legal route entering or leaving an endpoint's ancestor container is ignored. `EDGE_CONTAINER_TRANSIT` means a route crosses an unrelated visual-container body and needs judgment. Only an exact route through an unrelated swimlane title band becomes `EDGE_CONTAINER_HEADER_INTERSECTION`; an approximate route remains a warning.
 
-`TEXT_CLIP_RISK`, `EDGE_LABEL_OVERLAP_RISK`, `EDGE_LABEL_NEAR_VERTEX_RISK`, `EDGE_LABEL_DENSITY_RISK`, and `EDGE_LABEL_PAGE_RISK` use conservative estimated bounds. They prioritize rendered QA and never prove a renderer collision. Page analysis reports content bounds and `occupiedPageTiles`; multi-tile content is advisory unless `--expect-single-page` is set, in which case `SINGLE_PAGE_BOUNDARY_EXCEEDED` keeps the result `indeterminate`.
+`TEXT_CLIP_RISK`, `EDGE_LABEL_OVERLAP_RISK`, `EDGE_LABEL_NEAR_VERTEX_RISK`, `EDGE_LABEL_ENDPOINT_OVERLAP_RISK`, `EDGE_LABEL_DENSITY_RISK`, and `EDGE_LABEL_PAGE_RISK` use conservative estimated bounds. They prioritize rendered QA and never prove a renderer collision. Endpoint risks include the source/target role, vertex ID, minimum clearance and estimated rectangles; use these to locate and correct an undersized label corridor. Page analysis reports content bounds and `occupiedPageTiles`; multi-tile content is advisory unless `--expect-single-page` is set, in which case `SINGLE_PAGE_BOUNDARY_EXCEEDED` keeps the result `indeterminate`.
 
 `EDGE_LABEL_CONTAINER_HEADER_RISK` means an estimated edge-label rectangle enters a swimlane title band or its 4px safety margin. `TARGET_PORT_APPROACH_MISMATCH` means the last explicit waypoint does not approach a non-corner boundary port along its normal. Both are high-priority rendered-QA risks, remain warnings rather than deterministic collisions, and keep the result `indeterminate`. If either remains unresolved and readable rendered inspection is incomplete, report `draft_with_issues`.
 

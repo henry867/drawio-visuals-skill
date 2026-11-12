@@ -2,7 +2,7 @@
 
 Read for a new or substantially redesigned explanatory workflow, architecture/process explainer, or swimlane diagram. For a narrow source edit, preserve the surrounding language; for reconstruction or prescribed notation, fidelity takes priority. This reference supplies a way to invent suitable graphics, not a fixed theme or mandatory icon set.
 
-When the presentation is unspecified, first use [diagram-selection.md](diagram-selection.md) to choose a form from the reader's question. Use this reference to express that form, rather than choosing a flowchart merely because the component starters resemble process objects. Meaningful standard UML/ER symbols may already be the right representation.
+When the presentation is unspecified, first use [diagram-selection.md](diagram-selection.md) to choose a form from the reader's question. Use this reference to express that form, rather than choosing a flowchart merely because the component starters resemble process objects. Meaningful standard UML/ER symbols may already be the right representation. This is not a waiver of an explicit request for concrete graphics: preserve that request across pages and diagram-type changes, adding meaningful editable contents inside formal boundaries where compatible.
 
 ## Establish what actually moves and who acts
 
@@ -53,9 +53,19 @@ These are suggestions, not evidence of real behavior or permission to add steps.
 
 Keep technical names where they identify the real entity. Put a short name beside the illustration and a concise action on the connector. Move implementation details to notes or tooltips; keep consequential conditions and uncertainties visible even in the static PNG. Color and animation support the explanation; they should not be the only way to distinguish outcomes.
 
+## Make pictorial intent an acceptance condition
+
+When the user requests concrete or pictorial expression, choose the graphic representation before writing node prose. For each main object or materially different state, decide which visible parts show its identity and which parts change. This can be a brief task-local note; do not introduce a stored schema or force the same illustration on every domain.
+
+For example, an order lifecycle can retain state boundaries and event/guard/action arrows while showing an order slip beside a reserved stock tray, a pending payment card, an open parcel being packed, that parcel aboard a truck, and a delivered parcel at a doorway. Keep the order identity consistent. A clock becoming a checkmark can distinguish a pending refund from a confirmed refund. These drawings describe the state of the order, not extra execution steps.
+
+A shared rounded state boundary is valid; an empty boundary whose only changing content is a state name is insufficient for a requested pictorial lifecycle. A server rack copied for every action or a small unrelated icon beside a paragraph also fails: the graphic must encode a relevant difference. Do not decorate conditions, labels, or formal notation that already carry their necessary meaning.
+
+During official-renderer QA, inspect **every page** with node captions mentally covered. Can the reader distinguish the main objects and meaningful changes, even if exact events or guards still need labels? Inspect failures and recovery as well as the happy path. Correct missing visual meaning before marking the result ready. Automated structure, topology, and collision checks cannot judge this requirement; report the visual evidence rather than treating a passing test as proof.
+
 ## Reuse editable starters selectively
 
-The optional files below contain only native Draw.io cells. Each is a standalone single-page document with a semantic root group named `component`. Inspect/read just the files relevant to the task. Their sample colors, language, dimensions, and captions are replaceable; they are neither branding nor a complete diagram template.
+The optional files below contain only native Draw.io cells. These 12 starters are a seed library, not a capability limit or an exhaustive list of objects. An agent can combine them, modify their parts, or author a new native object using the method above. Each is a standalone single-page document with a semantic root group named `component`. Inspect/read just the files relevant to the task. Their sample colors, language, dimensions, and captions are replaceable; they are neither branding nor a complete diagram template.
 
 | Starter | Asset | Adaptation examples |
 |---|---|---|
@@ -108,4 +118,4 @@ Apply these questions during the main skill's official-renderer QA, not as an ex
 - Are conditions, relevant exceptions, and completion boundaries understandable in the PNG? Test promised hover details on a child of a grouped object; do not claim offline hover support from an embedded PNG.
 - Are all parts still editable native objects, with labels legible at useful zoom and the required paths passing topology checks?
 
-Formal flowcharts, state machines, technical schemas, and simple sequences may already communicate well with standard shapes. Keep that clarity; visual storytelling is not a requirement to decorate every node.
+For ordinary formal flowcharts, state machines, technical schemas, and simple sequences, standard shapes may communicate well without extra illustration. Preserve that clarity when no pictorial treatment is requested. When it is requested, apply the acceptance condition above without obscuring formal semantics; do not use this exception to revert a page to generic text modules.
