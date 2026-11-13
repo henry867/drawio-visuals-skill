@@ -81,8 +81,10 @@ class BundleTests(unittest.TestCase):
                 result = self.run_cli(*args, "--require-connected")
                 self.assertEqual(result["result"]["status"], "clear")
 
-    def test_default_readme_and_examples_are_english(self):
-        for path in [ROOT / "README.md", EXAMPLE, ROOT / "examples/components-en.drawio"]:
+    def test_default_readme_examples_and_starters_are_english(self):
+        paths = [ROOT / "README.md", EXAMPLE, ROOT / "examples/components-en.drawio"]
+        paths.extend(sorted((ROOT / "assets/components").glob("*.drawio")))
+        for path in paths:
             with self.subTest(path=path.name):
                 content = path.read_text()
                 if path.name == "README.md":
