@@ -1,4 +1,4 @@
 interface:
   display_name: "Drawio Visuals Skill"
   short_description: "Create visual Draw.io flows with editable objects"
-  default_prompt: "Use $drawio-visuals-skill to create or edit a native Draw.io file. Honor the user's diagram type, notation and orientation; otherwise choose the presentation that best answers the content's main question, including UML and non-UML forms. Use meaningful editable objects and visible transformations where appropriate, preserve verified ownership, check topology/layout and official renders, and deliver per-page PNGs plus self-contained HTML by default; keep native source internal unless requested."
+  default_prompt: "Use $drawio-visuals-skill to create or edit a native Draw.io diagram: choose the appropriate form, default new explanatory flows to concrete editable objects and visible changes, consulting bundled native starters to reuse, adapt, or reference when generating new objects instead of text-only rectangles, preserve requested notation and existing edit scope, and verify topology, layout and official renders before delivering PNGs and offline HTML."

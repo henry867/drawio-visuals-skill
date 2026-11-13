@@ -4,7 +4,7 @@ Use this reference for crowded diagrams, cross-page visual consistency, `check-l
 
 ## Choose meaningful representations before coordinates
 
-For explanatory flows, use [visual-storytelling.md](visual-storytelling.md) to identify the flowing objects, the actions, the visible transformations, and verified ownership before choosing node shapes. A uniform chain of text-heavy rectangles is not the default representation. Preserve explicit notation and source fidelity; optional component examples do not impose a palette or layout.
+For explanatory flows, use [visual-storytelling.md](visual-storytelling.md) to identify the flowing objects, the actions, the visible transformations, and verified ownership before choosing node shapes. A uniform chain of rectangles labeled with step names is not an acceptable default, even when the labels are short. First establish the visible objects and changes; geometric cleanliness cannot compensate for missing visual meaning. Preserve explicit notation and source fidelity; optional component examples do not impose a palette or layout.
 
 If the type is not specified, select it using [diagram-selection.md](diagram-selection.md) before laying out the graph. The user's requested type/orientation takes precedence; UML and non-UML forms remain available. Compose according to the chosen form's semantics rather than treating every diagram as a runtime sequence.
 
@@ -192,7 +192,7 @@ Per-page image delivery is an output format, not evidence that visual QA passed.
 
 ## Report delivery quality
 
-- `ready`: internal XML validation passed, deterministic collisions are resolved, every required rendered check passed, and all requested deliverables exist. Default delivery requires per-page PNGs and self-contained offline HTML, not native source or SVG.
+- `ready`: internal XML validation passed, deterministic collisions are resolved, every required rendered check passed, and all requested deliverables exist. New explanatory flows also pass the default visual-meaning check in `visual-storytelling.md` (or preserve a task-grounded exception); short labels, varied fill colors, and zero collisions do not satisfy that check by themselves. Default delivery requires per-page PNGs and self-contained offline HTML, not native source or SVG.
 - `structure_only`: XML and available static checks passed, but rendered QA was unavailable or incomplete.
 - `draft_with_issues`: a deterministic or rendered issue remains after the correction limit.
 

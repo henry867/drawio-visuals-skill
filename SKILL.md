@@ -7,13 +7,23 @@ description: Create and edit native Draw.io diagrams, explain processes through 
 
 Create, reconstruct, and edit native, user-editable Draw.io files without a server, MCP, fixed template, Scene IR, or custom renderer.
 
+## Default to objects, not text modules
+
+For a **new explanatory flow**—a process, pipeline, swimlane, request lifecycle, or architecture flow—use recognizable editable objects and visible changes by default. A plain request such as “draw the workflow” activates this rule; the user need not ask for “pictorial”, “concrete”, or “illustrated” graphics. Choose the diagram type separately from this visual treatment.
+
+Before placing nodes, identify what moves, what changes, and who acts. Then choose a silhouette, meaningful contents, or a small object scene for each main business object and processing stage: a queue has separate task cards and intake/outlet; a parser shows a document becoming extracted parts; a refund distinguishes pending from returned funds. Draw these native parts first, then add short names/actions. A series of rectangles containing step names fails this default even when the labels are brief and the layout is clean. Repeated server racks, emoji, or an unrelated icon on a prose card are not substitutes for visible meaning. Read [visual-storytelling.md](references/visual-storytelling.md) before authoring these flows.
+
+**Start with the bundled graphics:** consult the [component index](references/visual-storytelling.md#start-from-existing-native-components), read the relevant `.drawio` XML under `assets/components/`, and choose whether to reuse its native descendants, adapt/combine its parts, or use its construction as a reference for generating a new native object. Combine browser, document, message, queue, worker, storage, chunks, table, vectors, review, decision and notification objects as the task requires. For example, compose browser + document → storage, then a separate message → queue → worker; do not merely write those names inside rectangles. The 12 starters are an extensible seed library, not a complete template or capability limit; when generating an additional object, borrow relevant construction ideas such as silhouette, meaningful contents, status marks, nesting and connection ports, then adapt them to the domain. Do not impose the starter's sample palette or force an exact copy.
+
+**Exceptions follow the task, not convenience:** preserve faithful reconstruction, the scope of a local edit, an explicit text-only/minimal-box request, and required formal notation. Class/ER compartments, sequence lifelines, decision/fork/join symbols and state boundaries carry real semantics; retain them. A generic request for a “flowchart”, a “simple” diagram, missing starters, or the availability of Mermaid is not an exception. Explain states with visible object changes where compatible; do not replace formal relationships with pictures. These defaults apply to every page and survive orientation/type changes.
+
 ## Core rules
 
 - Treat the current `.drawio` file as the internal editable source of truth. By default deliver only per-page PNG images and one HTML preview; keep native files in an internal working directory, outside the delivery directory, and do not link them in the handoff. Deliver native files, SVG, PDF, or other formats only when explicitly requested.
 - Never overwrite an input. Every mechanical write must use a new output path, including internal working files.
 - Do not impose a theme, shape list, diagram type, coordinate grid, or layout recipe.
 - Follow the user's specified diagram type, notation, and orientation. When these are unspecified, choose the presentation that best answers the task's actual question, including UML and non-UML forms; do not default every request to a flowchart or swimlane. Use [diagram-selection.md](references/diagram-selection.md) when choosing or substantially changing the presentation.
-- For new explanatory workflows, make the objects, actions, and meaningful state or data changes visible; avoid defaulting to a chain of paragraph-filled rectangles. Use conventional symbols when they communicate better, and preserve explicit notation, source reconstruction, and the scope of local edits. Read [visual-storytelling.md](references/visual-storytelling.md) before choosing representations for a new or substantially redesigned explanatory flow; its optional native components are starting points, not a required catalog.
+- Apply the object-first default above to new explanatory flows; standard control symbols and reusable component starters support it without imposing a fixed icon catalog.
 - For vertical flowcharts, run the main path from top to bottom, place parallel branches side by side, label exits from decision diamonds, and group supporting checks in a light gray dashed box with a plain-language purpose.
 - When a central engine coordinates external modules, place the core in the center, group inputs and workers on either side, and use numbered arrows with action labels to guide the reader through one task. Where relevant, route feedback above the core, place human decisions and notification channels below it, and show an example workflow along the bottom. Choose colors to suit the subject.
 - Keep arbitrary native Draw.io shapes, stencils, styles, geometry, waypoints, layers, groups, and wrapper metadata.
@@ -32,7 +42,7 @@ Create, reconstruct, and edit native, user-editable Draw.io files without a serv
 
 Separate the diagram type from the authoring tool. Choose by what the reader needs to understand: progression, responsibilities, interactions, states, structure, deployment, data movement, or comparison. A supplied diagram, explicit format, or requested local edit constrains that choice. When the user leaves it open, make the choice autonomously, briefly explain it when useful, and proceed; do not make the user select from a catalog. Read [diagram-selection.md](references/diagram-selection.md) for the question-to-form guide and tradeoffs.
 
-Carry the user's visual-expression requirements across every page and later revision. A change to swimlanes, states, or another diagram type does not reset a request for concrete graphics. For a pictorial explanation, every main object or materially different state must have a recognizable editable construction that carries its identity or change; a captioned rectangle or the same decorative icon repeated everywhere does not satisfy that request. Preserve formal semantics through boundaries, transitions, guards, and relationships while illustrating state contents where compatible. Do not add a plain-text companion page as a substitute for the requested visual treatment.
+Apply the default visual treatment or the task's explicit exception across all pages and revisions. Do not add a plain-text companion page as a substitute for an object-based explanation.
 
 Then choose objects and notation appropriate to that presentation. Concrete illustrations can explain payloads and transformations, while formal UML, ER, and other established symbols should retain their semantic conventions. Do not treat every labeled class, state, or schema box as a text-heavy-flow defect.
 
@@ -40,10 +50,10 @@ Then choose objects and notation appropriate to that presentation. Concrete illu
 
 | Request | Workflow |
 |---|---|
-| Create a standard diagram | Mermaid → Draw.io Desktop → `.drawio` |
+| Explain a process, pipeline, swimlane, lifecycle, or architecture flow | Evidence/ownership → visual-storytelling → object/state constructions → direct native XML → official-renderer QA |
+| Create a formal structural diagram or explicitly minimal-box diagram | Preserve notation/content → Mermaid if it retains the intended representation and Desktop is available; otherwise native XML |
 | Create with custom shapes/styles/positions | Direct native XML → `.drawio` |
-| Explain a process with concrete objects or swimlanes | Evidence/ownership → visual-storytelling → native objects and transformations → official-renderer QA |
-| Create from PDF or text | Read source → extract supported structure → Mermaid/XML |
+| Create from PDF or text | Read source → extract supported structure → choose representation using the same defaults → native XML or suitable Mermaid |
 | Reconstruct from an image | Inspect at original resolution → editable native cells → optional preview comparison |
 | Check visual conflicts | `check-layout` → Desktop `render` → inspect image → small patch → rerender; fall back to Viewer HTML |
 | Check a business flow | `check-topology` with known starts, terminals, and required edges |
@@ -72,12 +82,12 @@ Read [references/authoring.md](references/authoring.md) for creation, preview, D
 
 ## Create
 
-1. Read `references/authoring.md` and detect Draw.io Desktop. Prefer Mermaid for standard topology when Desktop is available; use direct native XML for precise styling, specialized shapes, source-matched geometry, or when Desktop is absent.
+1. Read `references/authoring.md` and choose the representation before choosing a syntax. For a new explanatory flow, use the object-first default and direct native XML; Desktop availability changes export, not the visual requirement. Use Mermaid only when it retains the chosen semantics/representation, such as a formal structural or explicitly minimal-box diagram. Detect Desktop for conversion/export.
 2. Choose a descriptive lowercase-hyphenated base, reserve `<base>-v001` for the initial image/HTML delivery and keep its `.drawio` snapshot internal, and use a new working path while QA corrections remain. Convert temporary Mermaid to native `.drawio`, or author a well-formed `mxGraphModel`/`mxfile` without XML comments. Remove only the temporary Mermaid source after successful conversion.
-3. Before writing geometry, read `references/layout-authoring.md`. For explanatory flows, also use `references/visual-storytelling.md` to choose meaningful objects, show transformations, and place actions in their verified owner lanes. Form a task-local composition plan and edge inventory; preserve required relationships, reserve routing space, and size nodes from their content. Do not introduce a Scene IR or persisted schema.
+3. Before writing geometry, read `references/layout-authoring.md`. For explanatory flows, read `references/visual-storytelling.md`, consult its component index, then read the relevant starter XML and reuse/adapt it where the meaning fits. When generating a new domain object, use suitable starter constructions as references; preserve native editability and meaningful visible parts rather than falling back to a generic text card. Decide the main objects' visible parts and before/after changes, then group them at semantic endpoints with actions in verified owner lanes. Form a task-local composition plan and edge inventory; reserve routing space and preserve required relationships. Do not lay out text-only boxes first and add decorative icons afterward, or introduce a Scene IR/persisted schema.
 4. Run `check-layout` and apply the warning-specific guidance in that reference. Correct deterministic collisions; unresolved renderer-dependent findings require readable visual QA or an explicit limitation.
 5. For a business flow with known starts, terminals, or required edges, run `check-topology`. Missing required edges or failed reachability block publication.
-6. Inspect every page and high-risk region through Draw.io Desktop or the official Viewer, following the shared correction budget in [references/layout-authoring.md](references/layout-authoring.md#correction-budget). Export success alone is not visual acceptance. When pictorial expression is requested, apply the visual-storytelling acceptance check to every page, including companion views; a page that regresses to generic text boxes is not ready.
+6. Inspect every page and high-risk region through Draw.io Desktop or the official Viewer, following the shared correction budget in [references/layout-authoring.md](references/layout-authoring.md#correction-budget). Export success alone is not visual acceptance. Apply the visual-storytelling acceptance check to every explanatory page, including companion views, unless a task-grounded exception above applies. With captions covered, the core objects and important changes must remain distinguishable. Generic text boxes, decorative icon cards, or lost branch semantics block `ready`; report the visible evidence and correct the representation, not just its spacing.
 7. Generate per-page PNGs and companion HTML from the completed internal native snapshot as specified under **Deliver**. Verify header page switching and Viewer toolbar synchronization in multi-page previews. Without Desktop, capture the official Viewer at readable resolution, cropped to each complete diagram. Use the Web SVG fallback only for explicitly requested SVGs.
 
 ## Create from a source
@@ -162,7 +172,7 @@ For Desktop rendering and companion HTML, use the commands and preview contract 
 - For a single page use `<base>-vNNN.png`; for multiple pages use `<base>-vNNN-page-01.png`, `-page-02.png`, and so on, plus `<base>-vNNN.html`. Native XML, generators, logs, and QA files are intermediates, not default deliverables.
 - If a required image or offline HTML preview is missing, state that delivery is incomplete and name the missing outputs. SVG is optional unless explicitly requested: do not attempt its export by default, or downgrade an otherwise complete PNG/HTML delivery because SVG is unavailable. Requested SVGs must use an official renderer, never a custom SVG renderer.
 - State that the source file was not modified.
-- State the delivery quality as `ready`, `structure_only`, or `draft_with_issues`; never imply rendered QA occurred when it did not.
+- State the delivery quality as `ready`, `structure_only`, or `draft_with_issues`; never imply rendered QA occurred when it did not. For explanatory flows, briefly identify the concrete objects/changes actually inspected (or the task-grounded formal/reconstruction exception). A collision-free export is not proof of the object-first default.
 - For source-based diagrams, state any source gaps, approximations, or missing visual QA.
 - Summarize page names and material limitations; include internal cell IDs only when useful for a requested source edit.
 - Do not paste full XML, temporary files, or internal hashes unless the user explicitly asks.

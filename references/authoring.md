@@ -6,12 +6,12 @@ Use this reference only when creating, checking, previewing, laying out, opening
 
 This Skill does not define diagram types, templates, fixed geometry, themes, or allowed style combinations.
 
-- Prefer Mermaid when it expresses the requested topology concisely and Draw.io Desktop is available.
+- Choose representation before syntax. For new explanatory flows, default to direct native XML with concrete editable objects and visible changes, even when Desktop and Mermaid conversion are available. Mermaid is suitable when it preserves the intended representation, such as formal structural notation or an explicitly minimal-box request; concise topology alone is not a reason to choose it.
 - Use native XML for unrestricted Draw.io shapes, stencils, styles, layers, groups, waypoints, tags, metadata, and precise coordinates.
 - For a PDF, text, screenshot, or reference image, first read `source-to-diagram.md`; source evidence and visual language outrank generic diagram conventions.
 - A user-provided visual language or existing file outranks any example in this reference.
 - Do not convert a custom request into a generic flowchart merely because Mermaid is shorter.
-- For an explanatory flow, use [visual-storytelling.md](visual-storytelling.md) to select object/action/state representations and optional editable starters. Use direct XML when the chosen visual language needs composite objects; do not flatten them back into text boxes just to use Mermaid.
+- For an explanatory flow, read [visual-storytelling.md](visual-storytelling.md) before creating nodes. Consult its component index, read the relevant starter XML, and reuse/adapt those native parts to show object/action/state changes. When generating a new object, use relevant starter constructions as references instead of skipping the library or reproducing only its surrounding text card. The absence of an exact starter does not justify a text module. Do not flatten these objects to use Mermaid or let a text-first topology sketch become the finished diagram.
 
 ## Locate Draw.io Desktop
 

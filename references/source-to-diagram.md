@@ -8,7 +8,7 @@ Read this reference only when creating a diagram from PDF, text, a screenshot, o
 2. Establish source coverage before drawing. Extract only supported titles, sections, entities, relationships, containment, order, states, and quantities.
 3. Preserve the source language unless the user requests translation. Keep exact terminology where it carries domain meaning.
 4. Default to one readable page. Use multiple meaningfully named pages only when the user asks or distinct sections cannot remain readable together.
-5. Choose Mermaid when it expresses the topology compactly and Desktop is available. Choose direct XML for source-specific shapes, precise geometry, rich styling, or no Desktop.
+5. For a new explanation derived from prose/PDF, apply the main skill's object-first default: select the meaningful objects and changes, then author native XML. Source facts constrain meaning; prose input does not require prose boxes. For prescribed formal notation, faithful reconstruction, or an explicitly minimal-box result, use Mermaid only if it preserves the intended representation and Desktop is available; otherwise use native XML.
 6. Represent PDF content with editable shapes and text. Do not embed whole PDF pages as images.
 
 If extraction is truncated, a page is unreadable, facts conflict, or a scanned PDF cannot be inspected visually, stop or narrow the request. Never silently invent or omit material that changes the diagram's meaning.

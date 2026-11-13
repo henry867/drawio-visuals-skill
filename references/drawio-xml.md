@@ -41,9 +41,15 @@ Common native concepts include:
 
 Use any valid Draw.io style needed by the task, including library-qualified stencil names.
 
+## Compose a semantic object
+
+For explanatory flows, apply the main skill's object-first default before choosing cell styles. First consult the component index in `visual-storytelling.md` and read a relevant `assets/components/*.drawio`; copy the semantic root and descendants using that reference's ID/parent remapping procedure. Reuse/adapt these parts when they fit, or reference their characteristic parts, nesting and ports while generating a new native construction for the domain. A recognizable object can be an existing native symbol or a group of primitives: for example, a task queue uses an enclosing tray plus separate payload cards; a parser shows an incoming document and outgoing parts. Keep the visible pieces as native descendants of one semantic root and attach connectors to that root or an exposed port. A generic rounded rectangle with the process name is not a complete visual implementation. Read `visual-storytelling.md` for selecting and adapting native starters; no fixed list of shapes limits what can be constructed.
+
 ## Geometry
 
 `mxGeometry` attributes and children are native and open. Use explicit `x`, `y`, `width`, `height`, relative geometry, offsets, and waypoint arrays when required. The Skill does not snap values to a grid or remove waypoints.
+
+Give drawn primitives a visible extent: zero-height or zero-width vertex lines can disappear in the official Viewer even when the XML validates. Use a native edge with explicit endpoints or a line vertex with nonzero dimensions, then verify the rendered divider, stroke or object detail. In formal diagrams, confirm that required compartments remain visibly separated.
 
 Before delivery, use `check-layout` to catch obvious positive-area overlaps and line paths through non-endpoint vertices. Read `layout-authoring.md` for flexible endpoint, waypoint, label, and rendered-QA guidance. Do not add waypoints or spacing rules mechanically: preserve intentional overlaps, grouping, and task-specific composition. Draw.io-computed routes and labels remain renderer-dependent when the checker returns `indeterminate`.
 

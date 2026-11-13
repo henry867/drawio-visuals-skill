@@ -9,8 +9,8 @@ An Agent Skill for creating editable Draw.io diagrams that explain objects, inte
 ## What it does
 
 - Honors the requested diagram type and orientation. When the type is open, chooses by the reader's question: flowcharts, swimlanes, UML sequence/state/component/deployment/class diagrams, ER diagrams, data flows, and other suitable forms.
-- Explains processes with recognizable objects and visible changes, while retaining formal notation where it communicates best.
-- Includes 12 editable starters: browser, document, message, queue, worker, storage, chunks, table, vectors, human review, decision, and notification. These are a seed library, not a capability limit: agents can combine, adapt, or draw additional native objects for the task.
+- Defaults new process, pipeline, swimlane, lifecycle, and architecture-flow explanations to recognizable editable objects and visible changes, even when the request only says “draw the workflow”. Preserves required formal notation, faithful reconstruction, and scoped edits; text-only step rectangles are not the default.
+- Includes 12 editable starters: browser, document, message, queue, worker, storage, chunks, table, vectors, human review, decision, and notification. Agents first consult the component index to reuse, adapt/combine, or reference suitable constructions when generating new native objects. These are a seed library, not a capability limit: agents can combine them or draw additional objects when needed.
 - Inspects and patches native `.drawio` files, checks layout and directed topology, manages pages, and preserves prior versions through no-clobber writes.
 - Exports through Draw.io Desktop or the official web tools. The bundled Python tools do not implement a renderer or automatic layout engine.
 - Produces PNGs and HTML previews by default. Verified PNGs can be embedded for offline viewing; online interaction supports native tooltips and editing a copy.
@@ -116,7 +116,7 @@ The parcel, payment card, stock tray, and carrier truck in the workflow demonstr
 python3 -m unittest discover -s tests -v
 ```
 
-The automated checks exercise bundle references, native assets, directed paths, revision protection, no-clobber behavior, XML rejection, and offline-preview packaging. They do not prove visual quality. The supplied preview images were inspected after official Viewer rendering; changed diagrams still need their own rendered QA.
+The automated checks exercise bundle references, native assets, directed paths, revision protection, no-clobber behavior, XML rejection, and offline-preview packaging. They do not prove visual quality or that an agent follows the representation default. For changes to authoring guidance, run the fresh-agent requests in [behavioral regression cases](tests/behavioral-cases.md) and inspect official renders; keep formal-notation and scoped-edit cases alongside the new explanatory flows. The supplied preview images were inspected after official Viewer rendering; changed diagrams still need their own rendered QA.
 
 `check-layout` is a bounded geometry linter. It reports `EDGE_LABEL_ENDPOINT_OVERLAP_RISK` when estimated connector text enters a connected shape's clearance. The skill requires room for the full label, meaningful line breaks or a clear alternate position, followed by inspection of actual rendered text bounds. Unresolved label overlap blocks `ready`; a white label background or smaller font is not a clearance fix.
 
