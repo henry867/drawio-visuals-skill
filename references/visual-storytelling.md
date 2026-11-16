@@ -38,6 +38,19 @@ Cover names and explanatory prose temporarily while preserving meaningful visual
 
 This checkpoint does not replace final inspection of every page and branch. Repeated components can share a construction, but each instance must contain the correct domain information; reuse must not turn distinct stages into identical prose panels.
 
+## Draw simply, but preserve recognition
+
+Aim for the fewest native parts that still identify the object and its relevant action at the delivered size. Simplicity means removing irrelevant detail, not reducing every object to a circle and rectangle. Use the existing component/gallery as a starting point, then tune its silhouette and contents to the subject.
+
+- Give each object a characteristic contour and one or two useful recognition cues: a person needs a head/shoulder or familiar human silhouette; a parcel needs folded faces, a packing seam or shipping label; a clipboard needs its clip and checklist; a phone needs a screen frame and speaker; a message needs an envelope flap or a speech-bubble tail. Choose the cues that survive the actual viewing scale, rather than drawing every possible detail.
+- Make the action visible through the relationship between objects. A reviewer inspecting an item is clearer than an isolated person plus a question mark. A magnifier can establish inspection, but does not mean approval; add an outcome only when supported. Keep the original business object identifiable when adding an action cue.
+- Prefer plain native shapes and verified standard symbols. Use a small consistent family of stroke weights, rounded corners and restrained fills within the document; reserve emphasis for the meaningful object/change. Adapt to an existing style or user request rather than imposing this example's palette or a mandatory icon style.
+- Remove decoration that suggests false semantics: conveyor rollers can imply physical transport, a universal checkmark can imply completion, and identity cards cannot represent every abstract parameter. Use actual intake/outlet directions, separate messages, or the appropriate state instead.
+- Keep gaps between unrelated parts and sufficient contrast around essential contours. Do not rely on tiny text, faint strokes, subtle color changes or overlapping silhouettes to make an object recognizable. Avoid pictograms that only become understandable after zooming far beyond the normal reading scale.
+- In the representative render, inspect both the normal full-page view and a readable detail view. Temporarily cover captions: can the object category and action be identified? Restore captions to confirm exact meaning. If recognition fails, improve silhouette, cue placement or scale; do not automatically add more parts or longer prose.
+
+See the [before/after component comparison](../examples/component-comparison.drawio) and [official render](../docs/images/component-comparison.png) for concrete construction changes. These illustrate economical recognition, not a fixed template or proof that every recipient will interpret an icon identically.
+
 ## Establish what actually moves and who acts
 
 Before choosing shapes, identify the user-visible start, the actors, the thing being transferred or transformed, the important conditions, and the observable end. Use the source or the user's stated facts; mark gaps rather than inventing infrastructure.

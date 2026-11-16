@@ -16,6 +16,8 @@
 - **验证与交付**：检查布局和显式流程连通性，通过 Draw.io Desktop 或官方 Web 渲染，默认交付 PNG 和 HTML。
 - **离线预览**：HTML 可嵌入每页已验证的 PNG；在线预览支持组合对象的悬停说明和编辑副本。
 
+查看[修改前后对比](docs/images/component-comparison.png)：用简洁轮廓、关键细节和动作关系改善人工审核、消息队列与通知。[可编辑源文件](examples/component-comparison.drawio)保留了实际旧版和新版构造，便于 Agent 参考。
+
 ## 安装
 
 将仓库克隆到你的 Agent 的 skills 目录下，文件夹名保留为 `drawio-visuals-skill`，并保留内部目录结构：
