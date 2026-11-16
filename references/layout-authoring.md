@@ -156,7 +156,7 @@ The default output aggregates repeated route and label findings in `result.summa
 
 ## Correction budget
 
-Use at most two correction passes by default, counted across layout and rendered QA for the same logical delivery. Each pass applies a focused correction and checks the result. A user-requested high-fidelity reconstruction may use one additional pass; an explicit user request for further iteration overrides the default budget. After the applicable budget, disclose remaining issues and use the appropriate delivery quality rather than claiming they are resolved.
+Use at most two correction passes by default, counted across layout and rendered QA for the same logical delivery. Each pass applies a focused correction and checks the result. A user-requested high-fidelity reconstruction may use one additional pass; an explicit user request for further iteration overrides the default budget. The budget limits correction cycles; it does not excuse skipping required inspection or copying a known weak representation across pages. Use the early representation checkpoint before expanding the composition. After the applicable budget, disclose remaining issues and use the appropriate delivery quality rather than claiming they are resolved.
 
 ## Run rendered visual QA
 
@@ -185,6 +185,16 @@ Record visual acceptance with this task-local template; do not create a permanen
 |---|---|---|---|---|---|---|
 | working-01 | Main | fullPage | composition and page boundary | — | pass/fail | working-02 or — |
 | working-01 | Main | riskRegion | `EDGE_LABEL_DENSITY_RISK` | edge-a, edge-b | pass/fail | working-02 or — |
+
+For explanatory pages, extend the same record with the actual **visual evidence**: concept/state → rendered object, contents or change observed → pass/needs revision/necessary text (with reason). Cover every main concept, including failure/recovery and companion pages; grouping repeated instances is fine, but “icons used” or “all six screenshots reviewed” is not evidence of meaning. Keep this record task-local and concise.
+
+Track three independent acceptance dimensions:
+
+- **Meaning:** which objects, transformations and abstract relationships are visible; which precise explanations legitimately remain text. A text-dominated failure needs a representation correction, not only a geometry patch.
+- **Rendered coverage:** page overview plus readable inspection of routes, labels and high-risk regions. Reconcile inspected targets with `qaPlan` counts and omitted regions; selected targets are not the entire risk inventory when the plan is truncated. A whole-page image qualifies for local coverage only where the relevant details are actually readable and inspected. Mark uninspected targets pending, never passed. `indeterminate` may remain after successful visual verification; report the static status and rendered evidence separately.
+- **Preview behavior:** for the final multi-page HTML, actually exercise header switching, keyboard navigation when supported, and Viewer toolbar page switching with header synchronization; also check offline fallbacks and narrow width. Record not-applicable/unavailable honestly rather than treating an untested interaction as passed.
+
+Before delivery, reconcile this record against all pages and the final snapshot. Recheck affected regions after edits. If required inspection remains possible, perform it; if blocked, disclose exactly what remains unverified. A `draft_with_issues` label is honest reporting, not completion of work that can still be done within the authorized correction budget.
 
 The Python CLI does not implement rendering, open a browser, or call a vision API. `render` only invokes an installed Draw.io Desktop CLI; browser inspection and image understanding remain host-Agent capabilities.
 

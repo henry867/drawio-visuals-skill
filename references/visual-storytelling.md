@@ -4,6 +4,40 @@ Read for a new or substantially redesigned explanatory workflow, architecture/pr
 
 When the presentation is unspecified, first use [diagram-selection.md](diagram-selection.md) to choose a form from the reader's question. Use this reference to express that form, rather than choosing a flowchart merely because the component starters resemble process objects. Concrete objects and visible changes are the default for new explanatory flows, including ordinary “draw a flowchart” requests. Do not wait for the user to request illustrations. Meaningful UML/ER symbols remain essential for formal structure; keep their semantics and use visible object/state contents where compatible. The main skill defines task-grounded exceptions; a diagram-type name alone does not waive the default.
 
+## Choose how each concept can be seen
+
+For every main concept or materially different state, choose the first faithful representation below. This is a decision order, not an icon quota or a requirement to eliminate words:
+
+1. **Recognizable object or action:** show the actual thing and its relevant parts, such as empty seats becoming occupied, a ballot entering a tally, or a text sheet becoming an audio waveform.
+2. **Visual model of an abstract relationship:** use containment, position, grouping, comparison, counts, sequences, boundaries or before/after changes. Abstract does not automatically mean prose. Visibility can be a private item behind a boundary and public items crossing it; distribution can be grouped tokens; experience dimensions can be short labeled scales.
+3. **Short textual explanation:** when a visual model would invent facts, imply an unsupported measurement, or still fail to express the concept accurately, retain the necessary explanation alongside the relevant object or relationship. Exact technical names, guards, formulas, errors, source limitations and formal fields remain text. Do not encode arbitrary concepts as puzzles just to reduce word count.
+
+Before geometry, keep a brief task-local note mapping each main concept/state to its visible evidence, required text, and starter to reuse/adapt/reference (or new construction). Group repeated concepts; do not enumerate every decorative cell. For a text fallback, state what a simple visual cannot faithfully explain. This note belongs in working reasoning/QA, not as another prose panel in the delivered diagram.
+
+Ask **what does the drawing communicate beyond the caption?** A device silhouette establishes the endpoint, but does not explain its activity. Browser chrome around paragraphs, a folded corner around prose, and an envelope around arbitrary results do not become semantic illustrations merely by resembling objects. Reuse starter construction techniques, not their default interiors unchanged. A true identity card is appropriate for a role assignment; it is misleading for difficulty or player distribution.
+
+Examples of how to reason about less tangible concepts (use only facts supported by the task):
+
+| Concept | Visible evidence | Text still useful |
+|---|---|---|
+| Empty seat → claimed seat | Same seat outline, then an occupant and assignment marker | Seat ID, atomic-claim condition and failure reason |
+| Night → day → nomination → tally | Moon/sun for phase, seated participants or action-order markers, a pointer to the nominee, ballots and tally marks | Phase names, nomination restrictions, vote threshold; sun/moon alone does not explain actions |
+| Experience / difficulty / distribution | Questionnaire choices or labeled dimension scales / ordered challenge steps / role tokens grouped into seats | Dimension names and actual constraints; no invented scores or measured counts |
+| Player-visible AI context | Own role and public board enter a context bundle; other players' hidden cards remain outside its boundary | Exact visibility rule; a lock alone does not show which information is excluded |
+| Streamed response | Ordered fragments accumulate into a recipient's reply | SSE/API name and persistence limits; do not invent timing |
+| Text-to-speech and caching | Text plus voice selection becomes an audio waveform; the same audio object is stored and enters playback controls | Cache key, actual missing-file behavior and errors |
+| Broadcast triggers a refetch | Small change signal arrives, receiver requests a separate full record from storage | Protocol/entity names; do not depict the signal as carrying the full private record |
+
+Use illustrative marks only to explain structure, not to invent measurements, guarantees or executable steps. Keep a short note when a reader could mistake illustrative quantities for actual values.
+
+### Check a representative construction before multiplying it
+
+For multi-page work or an unfamiliar visual vocabulary, first compose and officially render a small representative portion: a main object, its meaningful change/handoff, and the hardest abstract concept. This is an internal authoring checkpoint, not an extra user approval or deliverable. On a small familiar single page, the first full-page render can serve this purpose.
+
+Cover names and explanatory prose temporarily while preserving meaningful visual content. Identify what is present, what changes and what is transferred. Then restore text and check precision. If only “some screen”, “some document” or “some card” remains, the shell explains too little: change its contents or choose a better model before replicating it across pages. If a concept genuinely needs text, keep the text and its local rationale. Do not use a percentage of icons, cell counts, text length or a blanket ban on rectangles as a proxy for semantic quality.
+
+This checkpoint does not replace final inspection of every page and branch. Repeated components can share a construction, but each instance must contain the correct domain information; reuse must not turn distinct stages into identical prose panels.
+
 ## Establish what actually moves and who acts
 
 Before choosing shapes, identify the user-visible start, the actors, the thing being transferred or transformed, the important conditions, and the observable end. Use the source or the user's stated facts; mark gaps rather than inventing infrastructure.
@@ -81,6 +115,10 @@ During official-renderer QA, inspect **every page** with node captions mentally 
 ## Start from existing native components
 
 Before inventing graphics for a new explanatory flow, consult this index and open the relevant starter XML. Choose among direct reuse, adaptation/combination, and reference-based generation of a new native object according to the task. For generation, inspect how the nearest starter encodes its recognizable silhouette, contents, state, parent/child structure and ports, then transfer the relevant construction ideas. The sample palette, exact dimensions and captions are not mandatory. For a document pipeline, browser/document/storage/message/queue/worker/chunks/vectors are likely starting points; read only the assets needed. If the library lacks a suitable object, build a new one from native parts rather than forcing a misleading metaphor or falling back to a text box.
+
+Use the [rendered component gallery](../docs/images/components-en.png) to recognize available constructions, then inspect the relevant native source. For richer combinations beyond the starters, consult the [commerce example](../examples/ecommerce-order.drawio) and its [rendered workflow](../docs/images/commerce-checkout.png) when useful; borrow construction patterns, not the example's business facts. User-provided libraries and existing in-scope diagrams can also supply reusable parts. Verify any additional built-in stencil in the official renderer before relying on it.
+
+In the task-local concept note, identify the actual component/example consulted and what will be retained or changed. For example, reuse browser chrome but replace its sample prose with a seat-selection scene; combine message and document parts for a context bundle; reference vectors' repeated rows for incremental reply fragments without calling those fragments embeddings. If no source fits, create a new native construction and explain its visual meaning. Merely listing component names or copying their caption panels is not evidence of useful reuse.
 
 The bundled files below contain only native Draw.io cells. These 12 starters are a seed library, not a capability limit or an exhaustive list of objects. An agent can combine them, modify their parts, or author a new native object using the method above. Each is a standalone single-page document with a semantic root group named `component`. Inspect/read just the files relevant to the task. When adding or maintaining these bundled components, all captions, fields, illustrative text values, states, page names and tooltips must be English; numbers, formulas and symbols may remain as such. When generating a diagram, replace sample captions, fields and tooltips with the task's requested/source language; the starter language does not override the user. Their sample colors, language, dimensions, and captions are replaceable; they are neither branding nor a complete diagram template.
 
