@@ -18,6 +18,8 @@
 
 查看[修改前后对比](docs/images/component-comparison.png)：用简洁轮廓、关键细节和动作关系改善人工审核、消息队列与通知。[可编辑源文件](examples/component-comparison.drawio)保留了实际旧版和新版构造，便于 Agent 参考。
 
+另见[存储、分块与向量对比](docs/images/data-component-comparison.png)：让存储内容、拆分变化与数值维度更清楚，保留必要的精确文字。
+
 ## 安装
 
 将仓库克隆到你的 Agent 的 skills 目录下，文件夹名保留为 `drawio-visuals-skill`，并保留内部目录结构：

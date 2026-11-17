@@ -18,6 +18,8 @@ An Agent Skill for creating editable Draw.io diagrams that explain objects, inte
 
 See the [before/after comparison](docs/images/component-comparison.png) for simple, recognizable human review, message queues and notifications. The [editable source](examples/component-comparison.drawio) shows the actual previous and revised constructions.
 
+See also [storage, splitting and numeric dimensions](docs/images/data-component-comparison.png): recognizable contents, visible transformations, and precise text where it matters.
+
 ## Install as a skill
 
 Clone this repository into a `drawio-visuals-skill` folder inside your agent's skills directory. Preserve the directory structure so references, scripts, and component assets remain available.

@@ -150,6 +150,8 @@ The bundled files below contain only native Draw.io cells. These 12 starters are
 | Decision | [decision.drawio](../assets/components/decision.drawio) | Condition gate; attach actual labeled exits |
 | Recipient result | [notification.drawio](../assets/components/notification.drawio) | Notification, confirmation, status display |
 
+Match the starter's contents to the actual subject. A storage cylinder may show record rows, but object storage should show the relevant files/objects and its exact name; do not merge database and object-store identity into a generic “DB / S3” label. The chunks starter shows a split transformation: for an already-split collection, reuse only its output pieces. Numeric vectors and tables legitimately need values/fields; use aligned dimensions and separators rather than replacing them with decorative icons. A rack is a service/processing symbol, not proof of physical servers or replica counts. See the [storage, splitting and vectors comparison](../examples/data-component-comparison.drawio) and [official render](../docs/images/data-component-comparison.png).
+
 To reuse a starter:
 
 1. Read the native XML and select `component` **and every descendant by parent links**, including wrapped cells. Do not copy the entire page as a picture.
