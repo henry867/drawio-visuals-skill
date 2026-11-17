@@ -46,7 +46,7 @@ Form a short task-local composition plan before writing coordinates. Do not pers
 
 1. Choose the reading direction and primary visual spine from the task semantics.
 2. Separate the primary spine, branch outcomes, error/exception outcomes, and annotations into distinct spatial bands when they would otherwise compete for one corridor.
-3. Size nodes from their actual labels before positioning them. Prefer a wider/taller node over squeezed text or a smaller font.
+3. Size nodes from their final labels before positioning them. For diamonds, triangles, folded corners and other non-rectangular interiors, check every rendered text line against the actual contour, not the bounding rectangle. Wrapping does not prove containment. Preview the longest real label with visible clearance from sloped edges; shorten a condition or enlarge the shape rather than shrink the font. A short placeholder does not validate a longer replacement.
 4. Reserve labeled routing corridors before placing the next tier of nodes. Add the container or page bounds last so they enclose the composed content with breathing room.
 5. Enlarge the lane, container, or page when the content exceeds the plan. Do not compress the same information merely to retain an initial canvas size.
 
@@ -61,7 +61,7 @@ These ranges are not a fixed grid and do not override a user-supplied compositio
 
 ## Author routes and labels
 
-- Finish node bounds and routing bands before authoring edges.
+- Finish node bounds and routing bands before authoring edges. First try a direct connection with aligned ports and no waypoint. Add bends only for a concrete obstacle, separated opposing flows or necessary reading structure; do not apply orthogonal routing plus corrective waypoints indiscriminately. Remove a bend whose purpose cannot be identified. No explicit waypoint does not mean a straight rendered edge: automatic orthogonal routing may add small doglegs between nearly aligned ports. Inspect the actual path. For unobstructed near-aligned peers, align their ports (or use a valid straight connector) instead of accepting a tiny compensating bend. Record route simplicity separately from collision clearance; “no overlaps” does not pass this check.
 - Choose connection sides from the actual relative positions and intended reading order.
 - Treat `exitX`/`exitY` and `entryX`/`entryY` as relative connection constraints, not universal rectangular pixel anchors. Resolve the vertex's native Draw.io perimeter before placing the adjacent waypoint.
 - Prefer stable axis anchors for common unrotated native shapes: any non-corner boundary point for rectangles and visual containers; top/right/bottom/left cardinal anchors for ellipse/circle, rhombus, and hexagon; and the base-center or apex of a triangle on its orientation axis. An intentional off-axis attachment is allowed only when its shape-specific perimeter projection and adjacent route segment can be proved or officially rendered.

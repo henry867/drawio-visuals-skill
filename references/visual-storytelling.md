@@ -61,9 +61,15 @@ Test two things separately: **recognition** (what objects can be seen) and **com
 
 See the [action-and-state comparison](../examples/readable-scene-comparison.drawio) and its [official render](../docs/images/readable-scene-comparison.png). The earlier comparison files document construction changes, not proof that their intermediate metaphors are sufficiently clear for every audience.
 
+### Example: a context bundle that changes
+
+Weak: a folded-corner shape listing “instructions, tools, history”; another listing “output, append, infer”. The outlines add no explanation of the feedback relationship.
+
+Better: show a rules sheet and ordered user/tool message strips as one input bundle; pair a concrete call `c7: read file` with `c7: source…`; visibly append that result strip to the same bundle, then connect the enriched bundle to the next model invocation. Preserve identity and order; short labels identify the parts. Do not invent hidden reasoning or turn the model entity into a decision diamond. Use a diamond for an actual condition such as “Tool call?” with distinct exits. This illustrates composition, not a mandatory Agent architecture template.
+
 ### Check a representative construction before multiplying it
 
-For multi-page work or an unfamiliar visual vocabulary, first compose and officially render a small representative portion: a main object, its meaningful change/handoff, and the hardest abstract concept. This is an internal authoring checkpoint, not an extra user approval or deliverable. On a small familiar single page, the first full-page render can serve this purpose.
+For multi-page work or an unfamiliar visual vocabulary, first compose and officially render a small representative portion: a main object, its meaningful change/handoff, and the hardest abstract concept. Select the hardest relationship on each distinct explanatory view, not merely the easiest recognizable object. Use final labels, including the longest shape-bound label. For a feedback architecture, preview how an input changes and feeds the next invocation; a standalone icon or successful UI before/after does not validate that architecture. Record why this sample covers the page's main representation risk. This is an internal authoring checkpoint, not an extra user approval or deliverable. On a small familiar single page, the first full-page render can serve this purpose.
 
 Cover names and explanatory prose temporarily to check object recognition. Then restore concise labels and state who acts, what changes and what is transferred; check the likely alternative reading as well as precision. If only “some screen”, “some document” or “some card” remains, the shell explains too little: change its contents or choose a better model before replicating it across pages. If a concept genuinely needs text, keep the text and its local rationale. Do not use a percentage of icons, cell counts, text length or a blanket ban on rectangles as a proxy for semantic quality.
 
