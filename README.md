@@ -10,17 +10,13 @@ An Agent Skill for creating editable Draw.io diagrams that explain objects, inte
 
 - Honors the requested diagram type and orientation. When the type is open, chooses by the reader's question: flowcharts, swimlanes, UML sequence/state/component/deployment/class diagrams, ER diagrams, data flows, and other suitable forms.
 - Defaults new process, pipeline, swimlane, lifecycle, and architecture-flow explanations to recognizable editable objects and visible changes, even when the request only says “draw the workflow”. Preserves required formal notation, faithful reconstruction, and scoped edits; text-only step rectangles are not the default.
-- Chooses an object/action first, then a visual model for abstract relationships, and uses prose where graphics cannot faithfully carry the meaning. Checks representative constructions before repeating them and records semantic, layout and preview acceptance separately; a familiar outline around paragraphs is insufficient.
+- Chooses an object/action first, then a visual model for abstract relationships, and uses concise labels to make participants, actions and states unambiguous. Checks representative constructions before repeating them and records semantic, layout and preview acceptance separately; a familiar outline around paragraphs is insufficient.
 - Includes 12 editable starters: browser, document, message, queue, worker, storage, chunks, table, vectors, human review, decision, and notification. Bundled component labels, sample text and tooltips are English; generated diagrams follow the task's requested/source language. Agents first consult the component index to reuse, adapt/combine, or reference suitable constructions when generating new native objects. These are a seed library, not a capability limit: agents can combine them or draw additional objects when needed.
 - Inspects and patches native `.drawio` files, checks layout and directed topology, manages pages, and preserves prior versions through no-clobber writes.
 - Exports through Draw.io Desktop or the official web tools. The bundled Python tools do not implement a renderer or automatic layout engine.
 - Produces PNGs and HTML previews by default. Verified PNGs can be embedded for offline viewing; online interaction supports native tooltips and editing a copy.
 
-See the [before/after comparison](docs/images/component-comparison.png) for simple, recognizable human review, message queues and notifications. The [editable source](examples/component-comparison.drawio) shows the actual previous and revised constructions.
-
-See also [storage, splitting and numeric dimensions](docs/images/data-component-comparison.png): recognizable contents, visible transformations, and precise text where it matters.
-
-The [domain-object comparison](docs/images/example-object-comparison.png) shows order/event storage, stock release, refunds and delivery using objects from the commerce example.
+Start with the [action-and-state comparison](docs/images/readable-scene-comparison.png): the same stock before/after release, buyer/seller refund direction, customer delivery and explicit order/event storage. Its [editable source](examples/readable-scene-comparison.drawio) shows how familiar symbols and short labels work together. Earlier [component construction](docs/images/component-comparison.png) and [data representation](docs/images/data-component-comparison.png) comparisons remain available as construction references.
 
 ## Install as a skill
 

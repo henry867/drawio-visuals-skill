@@ -10,7 +10,7 @@ For every main concept or materially different state, choose the first faithful 
 
 1. **Recognizable object or action:** show the actual thing and its relevant parts, such as empty seats becoming occupied, a ballot entering a tally, or a text sheet becoming an audio waveform.
 2. **Visual model of an abstract relationship:** use containment, position, grouping, comparison, counts, sequences, boundaries or before/after changes. Abstract does not automatically mean prose. Visibility can be a private item behind a boundary and public items crossing it; distribution can be grouped tokens; experience dimensions can be short labeled scales.
-3. **Short textual explanation:** when a visual model would invent facts, imply an unsupported measurement, or still fail to express the concept accurately, retain the necessary explanation alongside the relevant object or relationship. Exact technical names, guards, formulas, errors, source limitations and formal fields remain text. Do not encode arbitrary concepts as puzzles just to reduce word count.
+3. **Precise text alongside the scene:** use short role, verb and state labels immediately when they disambiguate the picture; do not postpone all words until graphics fail. Use longer explanation when a visual model would invent facts, imply an unsupported measurement, or still fail to express the concept accurately. Exact technical names, guards, formulas, errors, source limitations and formal fields remain text. Do not encode arbitrary concepts as puzzles just to reduce word count.
 
 Before geometry, keep a brief task-local note mapping each main concept/state to its visible evidence, required text, and starter to reuse/adapt/reference (or new construction). Group repeated concepts; do not enumerate every decorative cell. For a text fallback, state what a simple visual cannot faithfully explain. This note belongs in working reasoning/QA, not as another prose panel in the delivered diagram.
 
@@ -30,11 +30,21 @@ Examples of how to reason about less tangible concepts (use only facts supported
 
 Use illustrative marks only to explain structure, not to invent measurements, guarantees or executable steps. Keep a short note when a reader could mistake illustrative quantities for actual values.
 
+### Check the action, not just the icon
+
+For each key scene, form a plain-language reading: **who does what to which object, and what is different afterward?** Match that reading with the visible participants, direction and before/after state. Preserve the same object's identity and arrangement when showing a state change. Use different objects for a real transformation, not to stand for a status change.
+
+Before accepting a scene, name its most likely alternative reading. A paper pointing to stock might mean receiving goods rather than releasing a hold; a coin pointing to a card might mean an ordinary payment; a bare door may resemble a phone. Repair the causal context: show the same stock before/after, name buyer/seller and reverse the prior payment direction, or show a recipient receiving the parcel. Short labels such as “Hold removed”, “Money back” and “Customer” are part of the explanation, not a failure of pictorial design. Any contextual prior action must be supported by the source and visually distinguished from a new execution step.
+
+Test two things separately: **recognition** (what objects can be seen) and **comprehension** (what the complete scene plus labels says). Covering captions tests the first; restore labels for the second. If a reader can name every icon but cannot tell the action or confuses it with another action, revise the scene rather than adding detail to the icons. Conversely, do not strip useful words just to make a caption-free puzzle. Formal guarantees such as atomicity need explicit text; putting two artifacts inside a cylinder alone cannot establish them.
+
+See the [action-and-state comparison](../examples/readable-scene-comparison.drawio) and its [official render](../docs/images/readable-scene-comparison.png). The earlier comparison files document construction changes, not proof that their intermediate metaphors are sufficiently clear for every audience.
+
 ### Check a representative construction before multiplying it
 
 For multi-page work or an unfamiliar visual vocabulary, first compose and officially render a small representative portion: a main object, its meaningful change/handoff, and the hardest abstract concept. This is an internal authoring checkpoint, not an extra user approval or deliverable. On a small familiar single page, the first full-page render can serve this purpose.
 
-Cover names and explanatory prose temporarily while preserving meaningful visual content. Identify what is present, what changes and what is transferred. Then restore text and check precision. If only “some screen”, “some document” or “some card” remains, the shell explains too little: change its contents or choose a better model before replicating it across pages. If a concept genuinely needs text, keep the text and its local rationale. Do not use a percentage of icons, cell counts, text length or a blanket ban on rectangles as a proxy for semantic quality.
+Cover names and explanatory prose temporarily to check object recognition. Then restore concise labels and state who acts, what changes and what is transferred; check the likely alternative reading as well as precision. If only “some screen”, “some document” or “some card” remains, the shell explains too little: change its contents or choose a better model before replicating it across pages. If a concept genuinely needs text, keep the text and its local rationale. Do not use a percentage of icons, cell counts, text length or a blanket ban on rectangles as a proxy for semantic quality.
 
 This checkpoint does not replace final inspection of every page and branch. Repeated components can share a construction, but each instance must contain the correct domain information; reuse must not turn distinct stages into identical prose panels.
 
@@ -44,6 +54,7 @@ Aim for the fewest native parts that still identify the object and its relevant 
 
 - Give each object a characteristic contour and one or two useful recognition cues: a person needs a head/shoulder or familiar human silhouette; a parcel needs folded faces, a packing seam or shipping label; a clipboard needs its clip and checklist; a phone needs a screen frame and speaker; a message needs an envelope flap or a speech-bubble tail. Choose the cues that survive the actual viewing scale, rather than drawing every possible detail.
 - Make the action visible through the relationship between objects. A reviewer inspecting an item is clearer than an isolated person plus a question mark. A magnifier can establish inspection, but does not mean approval; add an outcome only when supported. Keep the original business object identifiable when adding an action cue.
+- Preserve familiar symbols when they already identify the entity: a database cylinder, document sheet, queue, decision diamond or UML notation should not become a generic rounded card merely to fit a caption. Add readable contents, action context and concise labels while retaining that recognizable boundary.
 - Prefer plain native shapes and verified standard symbols. Use a small consistent family of stroke weights, rounded corners and restrained fills within the document; reserve emphasis for the meaningful object/change. Adapt to an existing style or user request rather than imposing this example's palette or a mandatory icon style.
 - Remove decoration that suggests false semantics: conveyor rollers can imply physical transport, a universal checkmark can imply completion, and identity cards cannot represent every abstract parameter. Use actual intake/outlet directions, separate messages, or the appropriate state instead.
 - Keep gaps between unrelated parts and sufficient contrast around essential contours. Do not rely on tiny text, faint strokes, subtle color changes or overlapping silhouettes to make an object recognizable. Avoid pictograms that only become understandable after zooming far beyond the normal reading scale.
@@ -125,7 +136,7 @@ For example, an order lifecycle can retain state boundaries and event/guard/acti
 
 A shared rounded state boundary is valid; an empty boundary whose only changing content is a state name is insufficient for a new explanatory lifecycle unless the task requires that formal-only representation. A server rack copied for every action or a small unrelated icon beside a paragraph also fails: the graphic must encode a relevant difference. Do not decorate conditions, labels, or formal notation that already carry their necessary meaning.
 
-During official-renderer QA, inspect **every page** with node captions mentally covered. Can the reader distinguish the main objects and meaningful changes, even if exact events or guards still need labels? Inspect failures and recovery as well as the happy path. Correct missing visual meaning before marking the result ready. Automated structure, topology, and collision checks cannot judge this requirement; report the visual evidence rather than treating a passing test as proof.
+During official-renderer QA, inspect **every page** for both recognition and comprehension. Briefly cover captions to check the objects, then restore short labels and check actions, participants, changes and likely misreadings. Inspect failures and recovery as well as the happy path. Correct missing visual meaning before marking the result ready. Automated structure, topology, and collision checks cannot judge this requirement; report the visual evidence rather than treating a passing test as proof.
 
 ## Start from existing native components
 
