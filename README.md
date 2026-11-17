@@ -20,6 +20,8 @@ See the [before/after comparison](docs/images/component-comparison.png) for simp
 
 See also [storage, splitting and numeric dimensions](docs/images/data-component-comparison.png): recognizable contents, visible transformations, and precise text where it matters.
 
+The [domain-object comparison](docs/images/example-object-comparison.png) shows order/event storage, stock release, refunds and delivery using objects from the commerce example.
+
 ## Install as a skill
 
 Clone this repository into a `drawio-visuals-skill` folder inside your agent's skills directory. Preserve the directory structure so references, scripts, and component assets remain available.

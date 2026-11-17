@@ -79,6 +79,8 @@ For an unfamiliar object, sketch the few characteristic parts and its before/aft
 - Reconciliation: two record columns → matched pairs + a clearly separate unmatched pile.
 - Approval: a person + a checklist → approved document or a returned document with a correction mark.
 
+For domain-specific example objects, express outcomes on the affected artifact: an order record is rejected, reserved stock becomes available, funds return to the payment instrument, and a parcel reaches the recipient. A phone or generic check/cross is appropriate for a notification/status display, not a substitute for every business outcome. A shared storage boundary can contain distinct order and event artifacts while an exact caption retains the atomicity guarantee. Reuse the same object identity across workflow and lifecycle views. Prefer native directional shapes to font-dependent arrow glyphs when direction is essential. See the [example-object comparison](../examples/example-object-comparison.drawio) and [official render](../docs/images/example-object-comparison.png).
+
 These are suggestions, not evidence of real behavior or permission to add steps.
 
 ## Replace step labels with visible evidence

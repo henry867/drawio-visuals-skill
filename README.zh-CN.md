@@ -20,6 +20,8 @@
 
 另见[存储、分块与向量对比](docs/images/data-component-comparison.png)：让存储内容、拆分变化与数值维度更清楚，保留必要的精确文字。
 
+查看[业务对象对比](docs/images/example-object-comparison.png)：电商示例中的订单与事件存储、库存释放、退款和送达也采用可辨认的对象与变化。
+
 ## 安装
 
 将仓库克隆到你的 Agent 的 skills 目录下，文件夹名保留为 `drawio-visuals-skill`，并保留内部目录结构：
