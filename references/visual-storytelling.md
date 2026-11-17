@@ -30,6 +30,27 @@ Examples of how to reason about less tangible concepts (use only facts supported
 
 Use illustrative marks only to explain structure, not to invent measurements, guarantees or executable steps. Keep a short note when a reader could mistake illustrative quantities for actual values.
 
+### Preserve the symbol; explain the change
+
+When adapting any starter, preserve its familiar identity before adding action cues. Use this checklist across the bundled library:
+
+| Starter | Preserve | Express action or change through |
+| --- | --- | --- |
+| Browser | Window chrome and content area | Selected file, upload direction, progress |
+| Document | Sheet and folded corner | Relevant contents, extracted parts, supported status |
+| Message | Envelope or appropriate message symbol | Creation mark only for creation; transfer direction |
+| Queue | Separate messages in an ordered buffer | Intake/outlet and supported waiting/consumed states |
+| Worker | Recognizable service/server when appropriate | Input and output objects; do not repeat racks as explanations of different operations |
+| Storage | Database cylinder | Stored records and read/write direction |
+| Chunks | Source document and corresponding pieces | Visible split and preserved source-to-piece identity |
+| Table | Rows, columns and headers | Relevant cells or changed records |
+| Vectors | Numeric dimensions or mathematical notation | Encoding relationship; no invented physical metaphor |
+| Review | Person and inspected object | Inspection cue; approval only when supported |
+| Decision | Diamond and branch semantics | Short condition and labeled exits |
+| Notification | Actual channel, such as phone and message | Arrival or supported read state; not proof of physical delivery |
+
+Keep in-graphic notes minimal: retain only a necessary identifier, short action, state or disambiguating role. Avoid repeating the caption inside the object. Put longer qualifications outside the scene; retain exact guards and guarantees where necessary. Do not add action/status marks to a static object without evidence. Queue layouts, workers and vectors have no single universal pictogram: preserve the appropriate familiar structure rather than claiming one icon is mandatory. Compare the adapted scene against its starter at normal reading size; reject changes that weaken recognition or introduce a plausible wrong interpretation.
+
 ### Check the action, not just the icon
 
 For each key scene, form a plain-language reading: **who does what to which object, and what is different afterward?** Match that reading with the visible participants, direction and before/after state. Preserve the same object's identity and arrangement when showing a state change. Use different objects for a real transformation, not to stand for a status change.
